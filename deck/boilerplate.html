@@ -32,15 +32,76 @@
 <!-- Begin slides. Just make elements with a class of slide. -->
 
 <section class="slide">
-	<h1>Jasmine</h1>
+	<h1>JavaScript<br/>
+        (Unit|Acceptance)<br/>
+        Testing</h1>
+</section>
+
+
+<section class="slide">
+	<h2>Grunt</h2>
+        <img src="http://gruntjs.com/img/grunt-logo.png"/>a task-based command line build tool for JavaScript projects</img>
+        <blockquote/>a task-based command line build tool for JavaScript projects</blockquote>
+        <pre><code>// Gruntfile.js
+module.exports = function(grunt) {
+  // Project configuration.
+  grunt.initConfig({
+    lint: {
+      files: 'src/*.js'
+    },
+    ...
+  });
+
+  grunt.registerTask('default', 'jshint');
+ 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+};</code></pre>
+        <pre><code>[aaron@laptop js-testing]$ grunt
+Running "jshint:globals" (jshint) task
+>> 0 files lint free.
+
+Done, without errors.</pre></code>
 </section>
 
 <section class="slide">
-	<h1>QUnit</h1>
+	<h2>Jasmine</h2>
+	<img src="http://pivotal.github.com/jasmine/images/jasmine_logo.png"/>
+        <blockquote>behavior-driven development framework for testing JavaScript code</blockquote>
+        <pre><code>
+describe("view", function() {
+  beforeEach(function() {
+    loadFixtures("view.html");
+
+    this.view = new TestView({ el: "#testview" });
+  });
+
+  it("static content should be found", function() {
+    expect(this.view.$("#static")).toExist();
+    expect(this.view.$("#static").text()).toEqual("static fixture element");
+  });
+
+  it("added dynamic element should be found after it is rendered", function() {
+    expect(this.view.$("#dynamic")).not.toExist();
+    this.view.addDynamic();
+    expect(this.view.$("#dynamic")).toExist();
+  });
+
+});
+</code></pre>
 </section>
 
 <section class="slide">
-	<h1>Mocha</h1>
+        <h2><i>...we'll do it live</i></h2>
+        <iframe width="100%" height="500px" src="http://127.0.0.1:8000/_SpecRunner.html"></iframe>
+        <a target="jasmine" href="http://127.0.0.1:8000/_SpecRunner.html">http://127.0.0.1:8000/_SpecRunner.html</a>
+</section>
+
+<section class="slide">
+	<h2>QUnit</h2>
+</section>
+
+<section class="slide">
+	<h2>Mocha</h2>
 </section>
 
 <!-- End slides. -->

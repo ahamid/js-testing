@@ -41,6 +41,9 @@ module.exports = function(grunt) {
       },
       url: {
         path: 'http://127.0.0.1:8000/_SpecRunner.html'
+      },
+      presentation: {
+        path: 'index.html'
       }
     },
     watch: {
@@ -102,4 +105,5 @@ module.exports = function(grunt) {
   
   // grunt.renameTask('jasmine', 'jasmine-headless'); // requires PhantomJS
   grunt.registerTask('jasmine-browser', [ 'jasmine:test:build', 'connect', 'open:url', 'wait:10' ]);
+  grunt.registerTask('present', [ 'jasmine:test:build', 'open:presentation', 'connect:server:keepalive' ]);
 }
