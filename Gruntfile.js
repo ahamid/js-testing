@@ -68,7 +68,6 @@ module.exports = function(grunt) {
       },
       globals: {
         Backbone: true,
-        ChemSW: true,
         _: true,
         $: true,
         JST: true,
