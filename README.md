@@ -8,3 +8,18 @@ Sample project showcasing various JS testing frameworks
 * Write something in `deck/boilerplate.html` about your test framework of choice
 
 One concern we discussed was view rendering/dom manipulation with fixtures, so it would be nice to see how this is tested in each framework.
+
+To set up project
+-----------------
+
+`npm install`
+
+To run Jasmine tests (in browser)
+---------------------------------
+
+`grunt jasmine-browser`
+
+To launch presentation
+----------------------
+
+`grunt present`
