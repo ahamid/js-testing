@@ -2,16 +2,18 @@
 module.exports = function(grunt) {
   var files = {
     app: [
-     'src/view.js'
+      'src/view.js',
+      'src/todos.js'
     ],
     vendor: [
-     'vendor/jquery.min.js',
-     'vendor/jasmine-jquery-1.3.1.js',
-     'vendor/lodash.min.js',
-     'vendor/backbone.js'
+      'vendor/jquery.min.js',
+      'vendor/jasmine-jquery-1.3.1.js',
+      'vendor/lodash.min.js',
+      'vendor/backbone.js',
+      'vendor/sinon-1.6.0.js'
     ]
   };
- 
+
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -43,7 +45,7 @@ module.exports = function(grunt) {
         path: 'http://127.0.0.1:8000/_SpecRunner.html'
       },
       presentation: {
-        path: 'index.html'
+        path: 'deck/boilerplate.html'
       }
     },
     watch: {
@@ -101,7 +103,7 @@ module.exports = function(grunt) {
     // If a delay was specified, call done() after that many seconds.
     if (delay) { setTimeout(done, delay * 1000); }
   });
-  
+
   // grunt.renameTask('jasmine', 'jasmine-headless'); // requires PhantomJS
   grunt.registerTask('jasmine-browser', [ 'jasmine:test:build', 'connect', 'open:url', 'wait:10' ]);
   grunt.registerTask('present', [ 'jasmine:test:build', 'open:presentation', 'connect:server:keepalive' ]);

@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=1024, user-scalable=no">
 
 	<title>JavaScript Testing</title>
-	
+
 	<!-- Required stylesheet -->
 	<link rel="stylesheet" href="core/deck.core.css">
-	
+
 	<!-- Extension CSS files go here. Remove or add as needed. -->
 	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
 	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
@@ -20,10 +20,15 @@
 
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
 	<link rel="stylesheet" href="themes/style/web-2.0.css">
-	
+
 	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
 	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
-	
+
+  <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
+  <link rel="stylesheet" href="extensions/codemirror/themes/night.css">
+  <link rel="stylesheet" href="extensions/codemirror/themes/cobalt.css">
+  <link rel="stylesheet" href="extensions/codemirror/themes/lesser-dark.css">
+
 	<!-- Required Modernizr file -->
 	<script src="modernizr.custom.js"></script>
 </head>
@@ -53,7 +58,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', 'jshint');
- 
+
   grunt.loadNpmTasks('grunt-contrib-jshint');
 };</code></pre>
         <pre><code>[aaron@laptop js-testing]$ grunt
@@ -66,8 +71,9 @@ Done, without errors.</pre></code>
 <section class="slide">
 	<h2>Jasmine</h2>
 	<img src="http://pivotal.github.com/jasmine/images/jasmine_logo.png"/>
-        <blockquote>behavior-driven development framework for testing JavaScript code</blockquote>
-        <pre><code>
+  <blockquote>behavior-driven development framework for testing JavaScript code</blockquote>
+  <div>
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
 describe("view", function() {
   beforeEach(function() {
     loadFixtures("view.html");
@@ -87,7 +93,8 @@ describe("view", function() {
   });
 
 });
-</code></pre>
+</textarea>
+</div>
 </section>
 
 <section class="slide">
@@ -102,6 +109,67 @@ describe("view", function() {
 
 <section class="slide">
 	<h2>Mocha</h2>
+</section>
+
+
+<section class="slide">
+  <h2>Sinson.js</h2>
+  <blockquote>High-level API to manipulate XMLHttpRequests.</blockquote>
+  <div>
+     <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+describe("Todos", function () {
+  beforeEach(function () {
+    this.server = sinon.fakeServer.create();
+    this.todos = new Todos();
+  });
+
+  afterEach(function () {
+    this.server.restore();
+  });
+
+  describe('#fetch', function () {
+    it('should fetch todo data', function () {
+      var data = [{ id: 1, title: 'Todo 1' }];
+      var response = createResponse(200, data);
+      var callback = sinon.spy();
+
+      this.server.respondWith('GET', this.todos.url, response);
+      this.todos.fetch({ success: callback });
+      this.server.respond();
+
+      sinon.assert.calledWith(callback, this.todos, data);
+    });
+});
+</textarea>
+</div>
+</section>
+
+<section class="slide">
+  <h2>Other tools</h2>
+  <p>rosie.js</p>
+  <img style="width:150px; text-align:left; clear: right;" src="https://a248.e.akamai.net/camo.github.com/c58b2252d6c1cff99fac3bfa15385fc85c818dd5/687474703a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f7468756d622f312f31322f57655f43616e5f446f5f49742532312e6a70672f32323070782d57655f43616e5f446f5f49742532312e6a7067" />
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+Factory.define('definition')
+  .sequence('id')
+  .attr('materialname', function() { return "Name " + Math.random(); })
+  .attr('casno', function () { return "1"; })
+  .attr('supplier', function () { return "Test Supplier"; })
+  .attr('catalogno', function () { return "12345"; })
+  .attr('quantity', function () { return "20"; })
+  .attr('unitofmeasurename', function () { return "KG"; })
+  .attr('unittype', function () { return "WEIGHT"; })
+</textarea>
+</section>
+
+<section class="slide">
+  <h2>Other tools</h2>
+  <p>Faker.js - Generate massive amounts of fake data.</p>
+  <img style="width:150px;" src="https://a248.e.akamai.net/camo.github.com/12bb84b409d9e3404f2993993bb79836646411c8/687474703a2f2f696d6775722e636f6d2f4b69696e512e706e67" />
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+  var randomName = Faker.Name.findName(); // Rowan Nikolaus
+  var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
+  var randomCard = Faker.Helpers.createCard(); // random contact card
+</textarea>
 </section>
 
 <!-- End slides. -->
@@ -136,6 +204,8 @@ describe("view", function() {
 
 <!-- Required JS files. -->
 <script src="jquery-1.7.2.min.js"></script>
+<script src="extensions/codemirror/codemirror.js"></script>
+<script src="extensions/codemirror/mode/javascript/javascript.js"></script>
 <script src="core/deck.core.js"></script>
 
 <!-- Extension JS files. Add or remove as needed. -->
@@ -146,6 +216,7 @@ describe("view", function() {
 <script src="extensions/status/deck.status.js"></script>
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/scale/deck.scale.js"></script>
+<script src="extensions/codemirror/deck.codemirror.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
