@@ -114,7 +114,20 @@ describe("view", function() {
 </section>
 
 <section class="slide">
-	<h2>Mocha</h2>
+	<h2>mocha</h2>
+  <blockquote>Many assertion flavors: should.js, chai.js, expect.js</blockquote>
+
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+describe('Array', function(){
+  describe('#indexOf()', function(){
+    it('should return -1 when the value is not present', function(){
+      assert.equal(-1, [1,2,3].indexOf(5));
+      assert.equal(-1, [1,2,3].indexOf(0));
+    })
+  })
+})
+</textarea>
+
 </section>
 
 <section class="slide">
