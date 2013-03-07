@@ -209,14 +209,14 @@ describe("Todos", function () {
     this.server.restore();
   });
 
-  describe('#save', function () {
+  describe('#fetch', function () {
     it('should fetch todo data', function () {
       var data = [{ title: 'Todo 1' }, { title: 'Todo 2' }];
       var response = createResponse(200, data);
       var callback = sinon.spy();
 
       this.server.respondWith('POST', 'http://localhost:8080/todos', response);
-      this.todos.save(data, { success: callback });
+      this.todos.fetch({ success: callback });
       this.server.respond();
 
       sinon.assert.calledWith(callback, this.todos, data);
@@ -255,6 +255,21 @@ var definition = Factory.build('definition');
   var randomName = Faker.Name.findName(); // Rowan Nikolaus
   var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
   var randomCard = Faker.Helpers.createCard(); // random contact card
+</textarea>
+</section>
+
+
+
+<section class="slide">
+  <h2>Other tools</h2>
+  <p>Faker.js and rosie.js together</p>
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+Factory.define('user')
+  .sequence('id')
+  .attr('firstname', function () { return Faker.Name.firstName(); })
+  .attr('lastname', function () { return Faker.Name.lastName(); })
+  .attr('email', function () { return Faker.Internet.email(); })
+  .attr('password', function () { return "secret"; });
 </textarea>
 </section>
 

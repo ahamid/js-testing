@@ -10,7 +10,9 @@ module.exports = function(grunt) {
       'vendor/jasmine-jquery-1.3.1.js',
       'vendor/lodash.min.js',
       'vendor/backbone.js',
-      'vendor/sinon-1.6.0.js'
+      'vendor/sinon-1.6.0.js',
+      'vendor/rosie.js',
+      'vendor/faker.js'
     ]
   };
 
@@ -33,7 +35,10 @@ module.exports = function(grunt) {
         options: {
           vendor: files.vendor,
           specs: ['spec/**/*_spec.js'],
-          helpers: ['spec/helpers/**/*.js']
+          helpers: [
+            'spec/factories/*_factory.js',
+            'spec/helpers/**/*.js'
+          ]
         }
       }
     },
