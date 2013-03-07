@@ -111,6 +111,79 @@ describe("view", function() {
 	<h2>Mocha</h2>
 </section>
 
+<section class="slide">
+  <h2>Async Testing with Jasmine 1</h2>
+  <div>
+     <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+describe("AsyncTest in Jasmine", function () {
+  it('should test async', function () {
+    var foo = 0;
+
+    runs(function () {
+      setTimeout(function () { foo++; }, 250);
+    });
+
+    waits(300);
+
+    runs(function () {
+      expect(foo).toEqual(1);
+    });
+  });
+});
+</textarea>
+</div>
+</section>
+
+<section class="slide">
+  <h2>Async Testing with Jasmine 2</h2>
+  <div>
+     <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+describe("AsyncTest in Jasmine", function () {
+  it('should test async', function () {
+    var done1, done2, foo = 0;
+
+    runs(function () {
+      setTimeout(function () {
+        foo++;
+        done1 = true;
+      }, 250);
+    });
+
+    runs(function () {
+      setTimeout(function () {
+        foo++;
+        done2 = true;
+      }, 250);
+    });
+
+    waitsFor(function () {
+      return done1 && done2;
+    });
+
+    runs(function () { expect(foo).toEqual(2); });
+  });
+});
+</textarea>
+</div>
+</section>
+
+
+<section class="slide">
+  <h2>Async Testing with Mocha</h2>
+  <div>
+     <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+describe("AsyncTest in Mocha", function () {
+  it('should test async', function (done) {
+    model.save().then(function (data) {
+      expect(data.id).toBe(1);
+      done();
+    });
+  });
+});
+</textarea>
+</div>
+</section>
+
 
 <section class="slide">
   <h2>Sinson.js</h2>
@@ -144,6 +217,8 @@ describe("Todos", function () {
 </div>
 </section>
 
+
+
 <section class="slide">
   <h2>Other tools</h2>
   <p>rosie.js</p>
@@ -158,6 +233,17 @@ Factory.define('definition')
   .attr('quantity', function () { return "20"; })
   .attr('unitofmeasurename', function () { return "KG"; })
   .attr('unittype', function () { return "WEIGHT"; })
+</textarea>
+</section>
+
+<section class="slide">
+  <h2>Other tools</h2>
+  <p>Faker.js - Generate massive amounts of fake data.</p>
+  <img style="width:150px;" src="https://a248.e.akamai.net/camo.github.com/12bb84b409d9e3404f2993993bb79836646411c8/687474703a2f2f696d6775722e636f6d2f4b69696e512e706e67" />
+  <textarea id="code" name="code" class="code" theme="lesser-dark" mode="javascript" style="display: none;">
+  var randomName = Faker.Name.findName(); // Rowan Nikolaus
+  var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
+  var randomCard = Faker.Helpers.createCard(); // random contact card
 </textarea>
 </section>
 
