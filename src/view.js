@@ -6,6 +6,10 @@
 
     addDynamic: function() {
       this.$el.append("<span id='dynamic'>dynamic</span>");
+      this.onFunctionCalled("addDynamic");
+    },
+
+    onFunctionCalled: function(name) {
     }
   });
 })(window);

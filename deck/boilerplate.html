@@ -92,6 +92,12 @@ describe("view", function() {
     expect(this.view.$("#dynamic")).toExist();
   });
 
+  it("#addDynamic should invoke onFunctionCalled", function() {
+    // register jasmine spy on object function
+    spyOn(this.view, 'onFunctionCalled')
+    this.view.addDynamic();
+    expect(this.view.onFunctionCalled).toHaveBeenCalledWith("addDynamic");
+  });
 });
 </textarea>
 </div>
