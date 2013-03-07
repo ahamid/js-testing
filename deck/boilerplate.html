@@ -210,7 +210,7 @@ describe("Todos", function () {
       var callback = sinon.spy();
 
       this.server.respondWith('POST', 'http://localhost:8080/todos', response);
-      this.todos.save({ success: callback });
+      this.todos.save(data, { success: callback });
       this.server.respond();
 
       sinon.assert.calledWith(callback, this.todos, data);
